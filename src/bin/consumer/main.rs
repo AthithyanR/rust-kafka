@@ -1,5 +1,5 @@
 use kafka::consumer::{Consumer, FetchOffset, GroupOffsetStorage};
-use serde::{Deserialize};
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 struct Message {
@@ -23,7 +23,7 @@ fn main() {
                 let msg: Message = serde_json::from_slice(m.value).unwrap();
                 println!("{:?}", msg)
             }
-            consumer.consume_messageset(ms);
+            consumer.consume_messageset(ms).unwrap();
         }
         consumer.commit_consumed().unwrap();
     }
