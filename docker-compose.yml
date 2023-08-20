@@ -50,3 +50,16 @@ services:
       - kafka1
     environment:
       - KAFKA_BROKERS=kafka1:29092
+    
+  pgdb1:
+    image: postgres:15.4-alpine
+    hostname: pgdb1
+    container_name: pgdb1
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./docker-volumes/db-data:/var/lib/postgresql/data
